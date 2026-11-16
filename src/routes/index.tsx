@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Check, X, ArrowDown } from "lucide-react";
-import portrait from "@/assets/alexios-portrait.webp.asset.json";
+import portrait from "@/assets/alexios-portrait.webp";
 import { caseStudies, method, projects, mailto, GITHUB_URL, type Category } from "@/data/portfolio";
 import { repos, pagesProjects } from "@/data/inventory";
 import { SystemGraphic, CaseArt } from "@/components/site/Illustrations";
