@@ -16,7 +16,7 @@ export function SiteFooter() {
         </div>
         <div className="eyebrow mt-14 flex flex-col justify-between gap-2 border-t border-ink-foreground/15 pt-6 text-ink-foreground/60 sm:flex-row">
           <span>© {new Date().getFullYear()} Alexios Papaioannou</span>
-          <span>No invented metrics · Source-backed work</span>
+          <span>Every project documented from live builds and public source</span>
         </div>
       </div>
     </footer>
