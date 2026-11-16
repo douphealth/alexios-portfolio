@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Portfolio content (projects, case studies, contact) lives in `src/data/portfolio.ts`; the public repo/Pages snapshot lives in `src/data/inventory.ts`. Edit data there, not in components — keeps pages consistent.
+- Never publish invented metrics, uptime, testimonials or traffic claims; diagrams are labelled illustrative — accuracy is the brand.
