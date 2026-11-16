@@ -12,14 +12,15 @@ export type Project = {
   category: Category;
   blurb: string;
   caseStudy?: string;
+  flagship?: boolean;
 };
 
 export const projects: Project[] = [
-  { name: "Index Engine", repo: "https://github.com/douphealth/index-engine", category: "Search & publishing", blurb: "Discovers, diagnoses and prioritizes URL indexation problems.", caseStudy: "index-engine" },
-  { name: "Open FoodScan", url: "https://food-scan.gearuptofit.com/", repo: "https://github.com/douphealth/foodscan", category: "AI products", blurb: "Barcode intelligence with nutrition, allergens and honest price sources.", caseStudy: "foodscan" },
-  { name: "Mission Control", url: "https://mission-control-21072026.pages.dev/", repo: "https://github.com/douphealth/mission-control-21072026", category: "Operations", blurb: "One timeline for websites, builds, tasks and infrastructure.", caseStudy: "mission-control" },
-  { name: "ImageAlchemy", url: "https://imagealchemy.app/", repo: "https://github.com/douphealth/image-alchemy-pro", category: "AI products", blurb: "AI image generation and transformation studio." },
-  { name: "GearUpToFit", url: "https://gearuptofit.com/", repo: "https://github.com/douphealth/gearuptofit", category: "Search & publishing", blurb: "Fitness and running publication with interactive tools." },
+  { name: "Index Engine", flagship: true, repo: "https://github.com/douphealth/index-engine", category: "Search & publishing", blurb: "Discovers, diagnoses and prioritizes URL indexation problems.", caseStudy: "index-engine" },
+  { name: "Open FoodScan", flagship: true, url: "https://food-scan.gearuptofit.com/", repo: "https://github.com/douphealth/foodscan", category: "AI products", blurb: "Barcode intelligence with nutrition, allergens and honest price sources.", caseStudy: "foodscan" },
+  { name: "Mission Control", flagship: true, url: "https://mission-control-21072026.pages.dev/", repo: "https://github.com/douphealth/mission-control-21072026", category: "Operations", blurb: "One timeline for websites, builds, tasks and infrastructure.", caseStudy: "mission-control" },
+  { name: "ImageAlchemy", flagship: true, url: "https://imagealchemy.app/", repo: "https://github.com/douphealth/image-alchemy-pro", category: "AI products", blurb: "AI image generation and transformation studio." },
+  { name: "GearUpToFit", flagship: true, url: "https://gearuptofit.com/", repo: "https://github.com/douphealth/gearuptofit", category: "Search & publishing", blurb: "Fitness and running publication with interactive tools." },
   { name: "Affiliate Marketing for Success", url: "https://affiliatemarketingforsuccess.com/", repo: "https://github.com/douphealth/affiliatemarketingforsuccess", category: "Search & publishing", blurb: "Guides on affiliate marketing, SEO and online business." },
   { name: "Plantastic Haven", url: "https://plantastichaven.com/", repo: "https://github.com/douphealth/plantastichaven", category: "Search & publishing", blurb: "Houseplant and gardening publication." },
   { name: "Plantastic Haven Pro", url: "https://procare.plantastichaven.com/", category: "AI products", blurb: "Plant care planning companion." },
@@ -32,7 +33,7 @@ export const projects: Project[] = [
   { name: "Mice Solver Pro", url: "https://elimination.micegoneguide.com/", category: "AI products", blurb: "Step-by-step rodent elimination planner." },
   { name: "Efficient GPT Prompts", url: "https://efficientgptprompts.com/", category: "AI products", blurb: "Prompt library for practical AI work." },
   { name: "OpenClaw Skills Hub", url: "https://openclaw-skillshub.com/", repo: "https://github.com/douphealth/claw-skills-hub", category: "AI products", blurb: "Directory of skills for AI agents." },
-  { name: "RunMatch", url: "https://runmatch.gearup-flow-master.pages.dev/", repo: "https://github.com/douphealth/gearuptofit-runmatch-ai-buddy", category: "AI products", blurb: "AI running companion and matcher." },
+  { name: "RunMatch", flagship: true, url: "https://runmatch.gearup-flow-master.pages.dev/", repo: "https://github.com/douphealth/gearuptofit-runmatch-ai-buddy", category: "AI products", blurb: "AI running companion and matcher." },
   { name: "Fitness Plan", url: "https://fitness-plan.gearup-flow-master.pages.dev/", category: "AI products", blurb: "Personalized fitness plan builder." },
   { name: "Shoe Match", url: "https://gearuptofit.com/shoe-match", category: "AI products", blurb: "Find the right running shoe." },
   { name: "Watch Match", url: "https://gearuptofit.com/watch-match", category: "AI products", blurb: "Find the right fitness watch." },
