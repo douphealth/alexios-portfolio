@@ -45,6 +45,8 @@ function Hero() {
   return (
     <section className="relative overflow-hidden pt-28 md:pt-36">
       <div className="grain pointer-events-none absolute inset-0 opacity-60" aria-hidden />
+      <div className="aurora pointer-events-none absolute -right-40 -top-40 size-[38rem] rounded-full bg-accent/25 blur-3xl" aria-hidden />
+      <div className="aurora pointer-events-none absolute -left-40 top-1/2 size-[30rem] rounded-full bg-sun/30 blur-3xl [animation-delay:-6s]" aria-hidden />
       <div className="relative mx-auto grid max-w-7xl gap-14 px-5 pb-20 md:px-8 lg:grid-cols-[1.25fr_1fr]">
         <div>
           <div className="flex animate-rise items-center gap-4">
@@ -52,10 +54,11 @@ function Hero() {
             <div>
               <p className="text-sm font-medium">Hello, I'm Alexios Papaioannou.</p>
               <p className="eyebrow text-muted-foreground">Founder · Technical SEO · AI engineering</p>
+              <p className="eyebrow mt-1 inline-flex items-center gap-2 text-primary"><span className="relative flex size-2"><span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75" /><span className="relative inline-flex size-2 rounded-full bg-accent" /></span>Taking on new projects</p>
             </div>
           </div>
           <h1 className="mt-10 animate-rise text-[clamp(3rem,8vw,7rem)] font-light leading-[0.92]" style={{ animationDelay: "120ms" }}>
-            Fix what holds <br className="hidden sm:block" />sites <em className="text-accent">back.</em>
+            Fix what holds <br className="hidden sm:block" />sites <em className="text-gradient">back.</em>
             <span className="mt-2 block text-muted-foreground">Build what moves them <em className="text-primary">forward.</em></span>
           </h1>
           <p className="mt-8 max-w-xl animate-rise text-lg leading-relaxed text-muted-foreground" style={{ animationDelay: "240ms" }}>
@@ -121,7 +124,7 @@ function Work() {
         <div className="space-y-8">
           {caseStudies.map((c, i) => (
             <Reveal key={c.slug}>
-              <Link to="/work/$slug" params={{ slug: c.slug }} className={cn("group grid overflow-hidden border border-foreground bg-card transition duration-500 hover:shadow-card md:grid-cols-2", i % 2 && "md:[&>*:first-child]:order-2")}>
+              <Link to="/work/$slug" params={{ slug: c.slug }} className={cn("group grid overflow-hidden border border-foreground bg-card transition duration-500 hover:-translate-y-1 hover:shadow-card md:grid-cols-2", i % 2 && "md:[&>*:first-child]:order-2")}>
                 <div className="aspect-[36/26] overflow-hidden border-b border-foreground md:border-b-0 md:border-r">
                   <div className="h-full transition duration-700 group-hover:scale-[1.03]"><CaseArt slug={c.slug} steps={c.steps} /></div>
                 </div>

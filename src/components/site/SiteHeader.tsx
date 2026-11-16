@@ -25,6 +25,7 @@ export function SiteHeader() {
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-ink focus:px-4 focus:py-2 focus:text-ink-foreground">Skip to content</a>
       <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-500", scrolled ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent")}>
+        <div className="scroll-progress absolute inset-x-0 bottom-0 h-0.5 bg-accent" aria-hidden />
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 md:px-8">
           <Link to="/" className="group flex items-baseline gap-2" aria-label="Alexios Papaioannou — home">
             <span className="font-display text-2xl font-semibold leading-none">AP<span className="text-accent">.</span></span>
