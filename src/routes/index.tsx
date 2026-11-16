@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Check, X, ArrowDown } from "lucide-react";
-import portrait from "@/assets/alexios-portrait.webp.asset.json";
+import portrait from "@/assets/alexios-portrait.webp";
 import { caseStudies, method, projects, mailto, GITHUB_URL, type Category } from "@/data/portfolio";
 import { repos, pagesProjects } from "@/data/inventory";
 import { SystemGraphic, CaseArt } from "@/components/site/Illustrations";
@@ -50,7 +50,7 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-14 px-5 pb-20 md:px-8 lg:grid-cols-[1.25fr_1fr]">
         <div>
           <div className="flex animate-rise items-center gap-4">
-            <img src={portrait.url} alt="Portrait of Alexios Papaioannou" width={56} height={56} className="size-14 rounded-full border-2 border-background object-cover shadow-card" />
+            <img src={portrait} alt="Portrait of Alexios Papaioannou" width={56} height={56} className="size-14 rounded-full border-2 border-background object-cover shadow-card" />
             <div>
               <p className="text-sm font-medium">Hello, I'm Alexios Papaioannou.</p>
               <p className="eyebrow text-muted-foreground">Founder · Technical SEO · AI engineering</p>
@@ -324,7 +324,7 @@ function About() {
       <div className="mx-auto grid max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-[1fr_1.4fr]">
         <Reveal>
           <div className="relative w-fit">
-            <img src={portrait.url} alt="Alexios Papaioannou" width={168} height={168} loading="lazy" className="size-40 rounded-full border border-foreground object-cover md:size-52" />
+            <img src={portrait} alt="Alexios Papaioannou" width={168} height={168} loading="lazy" className="size-40 rounded-full border border-foreground object-cover md:size-52" />
             <span className="absolute -bottom-2 -right-2 flex size-14 items-center justify-center rounded-full bg-accent font-display text-xl text-accent-foreground">AP.</span>
           </div>
           <p className="eyebrow mt-8 text-accent">The person behind the systems</p>
