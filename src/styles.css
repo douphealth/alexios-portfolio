@@ -185,3 +185,21 @@
   .reveal { opacity: 1; transform: none; }
   .draw path, .draw circle, .draw line { stroke-dashoffset: 0; }
 }
+
+/* ---------- Dynamic layer ---------- */
+@keyframes word-rise { from { transform: translateY(110%) rotate(4deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.word-rise { animation: word-rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+.spotlight { background: radial-gradient(520px circle at var(--sx, 50%) var(--sy, 50%), color-mix(in oklab, var(--accent) 16%, transparent), transparent 60%); }
+.tilt-glare { background: radial-gradient(600px circle at var(--gx, 50%) var(--gy, 50%), color-mix(in oklab, var(--background) 35%, transparent), transparent 45%); opacity: 0; transition: opacity .4s; mix-blend-mode: soft-light; }
+.tilt:hover .tilt-glare { opacity: 1; }
+@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+.float-y { animation: float-y 7s ease-in-out infinite; }
+@keyframes border-spin { to { --angle: 360deg; } }
+@property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.glow-border { position: relative; isolation: isolate; }
+.glow-border::before { content: ""; position: absolute; inset: -2px; z-index: -1; border-radius: inherit;
+  background: conic-gradient(from var(--angle), transparent 60%, var(--accent), var(--sun), transparent 90%);
+  animation: border-spin 6s linear infinite; }
+.dot-grid { background-image: radial-gradient(color-mix(in oklab, var(--foreground) 14%, transparent) 1px, transparent 1px); background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); }
+@media (prefers-reduced-motion: reduce) { .word-rise, .float-y, .glow-border::before { animation: none; } }
