@@ -55,7 +55,7 @@ export function CaseArt({ slug, steps }: { slug: string; steps: [string, string,
       )}
       {steps.map((s, i) => (
         <g key={s}>
-          <text x={30 + i * 110} y="230" className="fill-foreground font-mono" fontSize="10" letterSpacing="2">{`0${i + 1} ${s.toUpperCase()}`}</text>
+          <text x={24 + i * 115} y="230" className="fill-foreground font-mono" fontSize="8.5" letterSpacing="1.5">{`0${i + 1} ${s.toUpperCase()}`}</text>
         </g>
       ))}
     </svg>
