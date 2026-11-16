@@ -68,7 +68,7 @@ function Hero() {
             I combine technical SEO and AI product engineering to fix <RotatingWord className="font-medium text-foreground" words={["indexation gaps", "slow publishing", "messy operations", "invisible content"]} /> — solving real website problems — then connect the code, content and infrastructure into systems that keep improving.
           </p>
           <div className="mt-10 flex animate-rise flex-wrap items-center gap-3" style={{ animationDelay: "360ms" }}>
-            <Magnetic><a href="#contact" className="glow-border inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-ink-foreground transition hover:bg-accent">Work with me <ArrowUpRight className="size-4" /></a></Magnetic>
+            <Magnetic className="glow-border rounded-full"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-ink-foreground transition hover:bg-accent">Work with me <ArrowUpRight className="size-4" /></a></Magnetic>
             <Magnetic><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-foreground px-6 py-3 transition hover:bg-foreground hover:text-background">Explore the evidence <ArrowDown className="size-4 animate-bounce" /></a></Magnetic>
           </div>
                   </div>
