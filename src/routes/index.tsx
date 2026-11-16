@@ -324,7 +324,7 @@ function About() {
       <div className="mx-auto grid max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-[1fr_1.4fr]">
         <Reveal>
           <div className="relative w-fit">
-            <img src={portrait.url} alt="Alexios Papaioannou" width={168} height={168} loading="lazy" className="size-40 rounded-full border border-foreground object-cover md:size-52" />
+            <img src={portrait} alt="Alexios Papaioannou" width={168} height={168} loading="lazy" className="size-40 rounded-full border border-foreground object-cover md:size-52" />
             <span className="absolute -bottom-2 -right-2 flex size-14 items-center justify-center rounded-full bg-accent font-display text-xl text-accent-foreground">AP.</span>
           </div>
           <p className="eyebrow mt-8 text-accent">The person behind the systems</p>
