@@ -48,6 +48,8 @@ function Hero() {
       <div className="grain pointer-events-none absolute inset-0 opacity-60" aria-hidden />
       <div className="aurora pointer-events-none absolute -right-40 -top-40 size-[38rem] rounded-full bg-accent/25 blur-3xl" aria-hidden />
       <div className="aurora pointer-events-none absolute -left-40 top-1/2 size-[30rem] rounded-full bg-sun/30 blur-3xl [animation-delay:-6s]" aria-hidden />
+      <div className="dot-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+      <Spotlight />
       <div className="relative mx-auto grid max-w-7xl gap-14 px-5 pb-20 md:px-8 lg:grid-cols-[1.25fr_1fr]">
         <div>
           <div className="flex animate-rise items-center gap-4">
@@ -57,20 +59,20 @@ function Hero() {
                             <p className="eyebrow mt-1 inline-flex items-center gap-2 text-primary"><span className="relative flex size-2"><span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75" /><span className="relative inline-flex size-2 rounded-full bg-accent" /></span>Taking on new projects</p>
             </div>
           </div>
-          <h1 className="mt-10 animate-rise text-[clamp(3rem,8vw,7rem)] font-light leading-[0.92]" style={{ animationDelay: "120ms" }}>
-            Fix what holds <br className="hidden sm:block" />sites <em className="text-gradient">back.</em>
-            <span className="mt-2 block text-muted-foreground">Build what moves them <em className="text-primary">forward.</em></span>
+          <h1 className="mt-10 text-[clamp(3rem,8vw,7rem)] font-light leading-[0.92]">
+            <SplitWords text="Fix what holds sites" delay={100} /> <em className="text-gradient word-rise inline-block" style={{ animationDelay: "420ms" }}>back.</em>
+            <span className="mt-2 block text-muted-foreground"><SplitWords text="Build what moves them" delay={550} /> <em className="word-rise inline-block text-primary" style={{ animationDelay: "900ms" }}>forward.</em></span>
           </h1>
           <p className="mt-8 max-w-xl animate-rise text-lg leading-relaxed text-muted-foreground" style={{ animationDelay: "240ms" }}>
-            I combine technical SEO and AI product engineering to solve real website problems — then connect the code, content and infrastructure into systems that keep improving.
+            I combine technical SEO and AI product engineering to fix <RotatingWord className="font-medium text-foreground" words={["indexation gaps", "slow publishing", "messy operations", "invisible content"]} /> — solving real website problems — then connect the code, content and infrastructure into systems that keep improving.
           </p>
           <div className="mt-10 flex animate-rise flex-wrap items-center gap-3" style={{ animationDelay: "360ms" }}>
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-ink-foreground transition hover:bg-accent">Work with me <ArrowUpRight className="size-4" /></a>
-            <a href="#work" className="inline-flex items-center gap-2 rounded-full border border-foreground px-6 py-3 transition hover:bg-foreground hover:text-background">Explore the evidence <ArrowDown className="size-4" /></a>
+            <Magnetic><a href="#contact" className="glow-border inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-ink-foreground transition hover:bg-accent">Work with me <ArrowUpRight className="size-4" /></a></Magnetic>
+            <Magnetic><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-foreground px-6 py-3 transition hover:bg-foreground hover:text-background">Explore the evidence <ArrowDown className="size-4 animate-bounce" /></a></Magnetic>
           </div>
                   </div>
 
-        <div className="relative animate-rise border border-foreground bg-card shadow-card" style={{ animationDelay: "200ms" }}>
+        <Tilt className="animate-rise self-start" max={7}><div className="float-y relative border border-foreground bg-card shadow-card">
           <div className="eyebrow flex justify-between border-b border-foreground px-4 py-2"><span>AP / The system</span><span className="text-accent">Fig. 001</span></div>
           <div className="aspect-square p-4"><SystemGraphic /></div>
           <div className="border-t border-foreground">
@@ -86,7 +88,15 @@ function Hero() {
               <ArrowUpRight className="size-6 shrink-0 transition group-hover:rotate-45 group-hover:text-accent" />
             </Link>
           </div>
-        </div>
+        </div></Tilt>
+      </div>
+      <div className="relative mx-auto grid max-w-7xl grid-cols-3 border-t border-foreground px-5 md:px-8">
+        {[[caseStudies.length, "In-depth case studies"], [projects.length, "Curated builds"], [repos.length, "Public repositories"]].map(([n, l]) => (
+          <div key={l as string} className="border-r border-foreground py-6 pr-4 last:border-r-0 [&:not(:first-child)]:pl-4 md:py-8">
+            <p className="font-display text-4xl font-light md:text-6xl"><Counter to={n as number} /><span className="text-accent">+</span></p>
+            <p className="eyebrow mt-2 text-muted-foreground">{l}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -123,14 +133,14 @@ function Work() {
         <div className="space-y-8">
           {caseStudies.map((c, i) => (
             <Reveal key={c.slug}>
-              <Link to="/work/$slug" params={{ slug: c.slug }} className={cn("group grid overflow-hidden border border-foreground bg-card transition duration-500 hover:-translate-y-1 hover:shadow-card md:grid-cols-2", i % 2 && "md:[&>*:first-child]:order-2")}>
+              <Tilt max={3}><Link to="/work/$slug" params={{ slug: c.slug }} className={cn("group grid overflow-hidden border border-foreground bg-card transition duration-500 hover:-translate-y-1 hover:shadow-card md:grid-cols-2", i % 2 && "md:[&>*:first-child]:order-2")}>
                 <div className="aspect-[36/26] overflow-hidden border-b border-foreground md:border-b-0 md:border-r">
                   <div className="h-full transition duration-700 group-hover:scale-[1.03]"><CaseArt slug={c.slug} steps={c.steps} /></div>
                 </div>
                 <div className="flex flex-col justify-between gap-8 p-8 md:p-10">
                   <div>
                     <p className="eyebrow text-muted-foreground">{c.index} / {c.kicker}</p>
-                    <h3 className="mt-3 text-4xl md:text-5xl">{c.name}<span className="text-accent">.</span></h3>
+                    <h3 className="mt-3 text-4xl md:text-5xl"><span className="whitespace-nowrap">{c.name}<span className="text-accent">.</span></span></h3>
                     <p className="mt-3 font-display text-xl italic text-muted-foreground">{c.tagline}</p>
                   </div>
                   <ul className="flex flex-wrap gap-2">
@@ -138,7 +148,7 @@ function Work() {
                   </ul>
                   <span className="inline-flex items-center gap-2 text-sm font-medium">Explore the case study <ArrowUpRight className="size-4 transition group-hover:rotate-45" /></span>
                 </div>
-              </Link>
+              </Link></Tilt>
             </Reveal>
           ))}
         </div>

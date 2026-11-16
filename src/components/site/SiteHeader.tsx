@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { mailto } from "@/data/portfolio";
 import { CommandPalette } from "./CommandPalette";
 import logoAp from "@/assets/logo-ap-monogram.png";
 
