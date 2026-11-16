@@ -41,7 +41,7 @@ function Home() {
 
 function Hero() {
   const [tab, setTab] = useState(0);
-  const c = caseStudies[tab];
+  const c = caseStudies[tab]!;
   return (
     <section className="relative overflow-hidden pt-28 md:pt-36">
       <div className="grain pointer-events-none absolute inset-0 opacity-60" aria-hidden />
@@ -197,8 +197,8 @@ function Method() {
             <span className="font-display text-[10rem] leading-none text-ink-foreground/10">0{step + 1}</span>
             <div key={step} className="animate-rise">
               <p className="eyebrow text-accent">Step 0{step + 1} / 05</p>
-              <p className="mt-4 font-display text-3xl">{method[step].title}.</p>
-              <p className="mt-4 text-lg text-ink-foreground/70">{method[step].body}</p>
+              <p className="mt-4 font-display text-3xl">{method[step]!.title}.</p>
+              <p className="mt-4 text-lg text-ink-foreground/70">{method[step]!.body}</p>
             </div>
           </div>
         </div>
@@ -263,7 +263,7 @@ function Lab() {
 
 function Preflight() {
   const [val, setVal] = useState("");
-  const [res, setRes] = useState<{ checks: PCheck[]; href?: string; error?: string } | null>(null);
+  const [res, setRes] = useState<{ checks: PCheck[]; href?: string | undefined; error?: string | undefined } | null>(null);
   const submit = (e: FormEvent) => {
     e.preventDefault();
     const r = preflight(val);

@@ -22,7 +22,7 @@ export const Route = createFileRoute("/work/$slug")({
 function CaseStudyPage() {
   const { study: s } = Route.useLoaderData();
   const i = caseStudies.findIndex((c) => c.slug === s.slug);
-  const next = caseStudies[(i + 1) % caseStudies.length];
+  const next = caseStudies[(i + 1) % caseStudies.length]!;
   const sections = [
     { k: "01 / The problem", h: "Why it matters", b: s.why },
     { k: "02 / The implementation", h: "What was built", b: s.implementation },
