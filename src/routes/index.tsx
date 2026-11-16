@@ -8,6 +8,7 @@ import { SystemGraphic, CaseArt } from "@/components/site/Illustrations";
 import { Reveal } from "@/components/site/Reveal";
 import { preflight, type Check as PCheck } from "@/lib/preflight";
 import { cn } from "@/lib/utils";
+import { Tilt, Magnetic, Spotlight, RotatingWord, Counter, SplitWords } from "@/components/site/Motion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -93,7 +94,7 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl grid-cols-3 border-t border-foreground px-5 md:px-8">
         {[[caseStudies.length, "In-depth case studies"], [projects.length, "Curated builds"], [repos.length, "Public repositories"]].map(([n, l]) => (
           <div key={l as string} className="border-r border-foreground py-6 pr-4 last:border-r-0 [&:not(:first-child)]:pl-4 md:py-8">
-            <p className="font-display text-4xl font-light md:text-6xl"><Counter to={n as number} /><span className="text-accent">+</span></p>
+            <p className="font-display text-4xl font-light md:text-6xl"><Counter to={n as number} /></p>
             <p className="eyebrow mt-2 text-muted-foreground">{l}</p>
           </div>
         ))}
