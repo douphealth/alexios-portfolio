@@ -42,7 +42,7 @@ export function SiteHeader() {
             <button onClick={() => setOpen(true)} className="flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition hover:border-foreground hover:text-foreground" aria-label="Open command palette">
               <Search className="size-3.5" /> <kbd className="font-mono text-xs">⌘K</kbd>
             </button>
-            <a href={mailto("Website Growth Inquiry")} className="hidden items-center gap-1 rounded-full bg-ink px-4 py-1.5 text-sm text-ink-foreground transition hover:bg-accent sm:inline-flex">
+            <a href="/#contact" className="hidden items-center gap-1 rounded-full bg-ink px-4 py-1.5 text-sm text-ink-foreground transition hover:bg-accent sm:inline-flex">
               Work with me <ArrowUpRight className="size-3.5" />
             </a>
           </div>
