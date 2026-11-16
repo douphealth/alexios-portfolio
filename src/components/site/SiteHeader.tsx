@@ -4,6 +4,7 @@ import { ArrowUpRight, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { mailto } from "@/data/portfolio";
 import { CommandPalette } from "./CommandPalette";
+import logoAp from "@/assets/logo-ap-monogram.png";
 
 const nav = [
   { label: "Work", hash: "work" },
@@ -27,8 +28,8 @@ export function SiteHeader() {
       <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-500", scrolled ? "border-b border-border bg-background/85 backdrop-blur-md" : "bg-transparent")}>
         <div className="scroll-progress absolute inset-x-0 bottom-0 h-0.5 bg-accent" aria-hidden />
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 md:px-8">
-          <Link to="/" className="group flex items-baseline gap-2" aria-label="Alexios Papaioannou — home">
-            <span className="font-display text-2xl font-semibold leading-none">AP<span className="text-accent">.</span></span>
+          <Link to="/" className="group flex items-center gap-2.5" aria-label="Alexios Papaioannou — home">
+            <img src={logoAp} alt="" width={1024} height={1024} className="h-9 w-auto transition-transform duration-500 group-hover:-rotate-3" />
             <span className="eyebrow hidden text-muted-foreground sm:inline">Alexios Papaioannou</span>
           </Link>
           <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
