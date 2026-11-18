@@ -176,7 +176,7 @@
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes dash { to { stroke-dashoffset: 0; } }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.2,0.7,0.1,1), transform 0.9s cubic-bezier(0.2,0.7,0.1,1); }
+.reveal { opacity: 1; }
 .reveal.is-visible { opacity: 1; transform: none; }
 .draw path, .draw circle, .draw line { stroke-dasharray: 600; stroke-dashoffset: 600; animation: dash 2.4s ease forwards 0.3s; }
 
@@ -203,3 +203,85 @@
 .dot-grid { background-image: radial-gradient(color-mix(in oklab, var(--foreground) 14%, transparent) 1px, transparent 1px); background-size: 22px 22px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); }
 @media (prefers-reduced-motion: reduce) { .word-rise, .float-y, .glow-border::before { animation: none; } }
+
+/* Editorial portfolio. Type scale and image proportions follow the available width. */
+.folio-monogram { display: inline-flex; align-items: baseline; font: italic 600 2.5rem/.9 Georgia, serif; letter-spacing: -.13em; padding-right: .15em; }
+.folio-monogram span { color: var(--accent); }
+.folio-wordmark { font-weight: 650; font-size: .96rem; letter-spacing: -.035em; }
+.folio-intro, .folio-latest { width: min(calc(100% - 4rem), 76rem); margin-inline: auto; }
+.folio-intro { padding-top: clamp(6rem, 8vw, 8.4rem); }
+.folio-spread { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: clamp(1.5rem, 4.5vw, 5rem); padding-bottom: 2rem; }
+.folio-intro-copy { min-width: 0; padding-block: 1rem; }
+.folio-kicker, .folio-discipline, .folio-image-label, .folio-cover-caption > span {
+  font: 500 .69rem/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase;
+}
+.folio-kicker { display: flex; gap: .7rem; align-items: center; color: var(--primary); }
+.folio-kicker > span { width: 1.8rem; height: 2px; background: var(--accent); flex: none; }
+.folio-intro h1 { margin-block: 1.65rem 1.4rem; font-size: clamp(3.9rem, 6.2vw, 6.1rem); font-weight: 350; line-height: .95; letter-spacing: -.067em; }
+.folio-intro h1 em, .folio-latest h2 em { color: var(--primary); font-weight: 350; }
+.folio-deck { max-width: 29rem; font-size: clamp(1.03rem, 1.45vw, 1.22rem); line-height: 1.55; color: var(--muted-foreground); }
+.folio-actions, .folio-controls, .folio-primary, .folio-text-link, .release-links, .release-links a, .folio-results { display: flex; align-items: center; }
+.folio-actions { gap: 1.5rem; flex-wrap: wrap; margin-top: 1.9rem; }
+.folio-primary { background: var(--ink); color: var(--ink-foreground); border-radius: 3rem; padding: .87rem 1.3rem; gap: 1rem; font-weight: 600; }
+.folio-primary:hover { background: var(--primary); }
+.folio-text-link { gap: .4rem; width: fit-content; padding-block: .4rem; border-bottom: 1px solid currentColor; font-weight: 600; }
+.folio-feature { min-width: 0; background: var(--ink); color: var(--ink-foreground); border-radius: .55rem; overflow: hidden; }
+.folio-cover { position: relative; display: block; width: 100%; height: clamp(20rem, 31vw, 28rem); isolation: isolate; background: var(--primary); overflow: hidden; }
+.folio-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.folio-cover:hover img { transform: scale(1.025); }
+.folio-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, oklch(.14 .02 155 / .9), transparent 55%); }
+.folio-image-label, .folio-cover-caption, .folio-open { position: absolute; z-index: 1; }
+.folio-image-label { left: 1.3rem; top: 1.3rem; border-radius: 3rem; padding: .4rem .7rem; background: var(--background); color: var(--foreground); font-size: .61rem; }
+.folio-cover-caption { left: clamp(1.25rem, 3vw, 2rem); bottom: 1.6rem; right: 4.5rem; display: grid; gap: .25rem; }
+.folio-cover-caption strong { font: 400 clamp(2rem, 3.8vw, 3.55rem)/1.04 var(--font-display); letter-spacing: -.055em; }
+.folio-open { right: 1.25rem; bottom: 1.7rem; width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; }
+.folio-caption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.25rem; }
+.folio-caption p { font-size: .9rem; line-height: 1.45; max-width: 24rem; }
+.folio-controls { gap: .35rem; flex: none; }
+.folio-controls span { font: .65rem var(--font-mono); white-space: nowrap; }
+.folio-controls button { display: grid; place-items: center; height: 2.5rem; width: 2.5rem; border: 1px solid oklch(.97 .01 85 / .4); border-radius: 50%; }
+.folio-controls button:hover { background: var(--ink-foreground); color: var(--ink); }
+.folio-index { display: flex; justify-content: space-between; gap: 1rem; border-block: 1px solid var(--border); }
+.folio-index a { display: inline-flex; align-items: baseline; gap: .6rem; font-size: .88rem; padding-block: 1rem; }
+.folio-index strong { font: 400 1.65rem/1 var(--font-display); }
+.folio-index svg { align-self: center; }
+.folio-latest { padding-block: clamp(3rem, 6.5vw, 6rem) 1rem; scroll-margin-top: 4.5rem; }
+.folio-section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
+.folio-latest h2 { font-size: clamp(3.1rem, 5.5vw, 5rem); font-weight: 350; letter-spacing: -.06em; line-height: 1.08; margin-top: .6rem; }
+.folio-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-block: 1.6rem; }
+.folio-filter button { padding: .55rem .95rem; font-size: .86rem; border: 1px solid var(--border); border-radius: 2rem; }
+.folio-filter button[aria-pressed=true] { background: var(--ink); color: var(--ink-foreground); }
+.release-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.release-grid li { background: var(--card); display: flex; flex-direction: column; padding: clamp(1.25rem, 2vw, 2rem); border: 1px solid var(--border); border-top: 2px solid var(--primary); border-radius: .25rem; }
+.folio-discipline { color: var(--muted-foreground); font-size: .64rem; }
+.release-grid h3 { font-size: clamp(1.7rem,2.6vw,2.5rem); letter-spacing: -.045em; line-height: 1.08; margin: 1.1rem 0 .65rem; }
+.release-grid h3 a { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
+.release-grid h3 svg { flex: none; color: var(--primary); }
+.release-description { line-height: 1.5; color: var(--muted-foreground); font-size: .97rem; flex: 1; }
+.release-links { gap: 1rem; padding-top: 1rem; margin-top: 1.3rem; border-top: 1px solid var(--border); }
+.release-links a { gap: .25rem; font-size: .8rem; text-decoration: underline; text-underline-offset: .23rem; }
+.release-links a:first-child { font-weight: 650; }
+.folio-results { justify-content: space-between; gap: 1rem; margin-top: 1rem; font-size: .86rem; }
+.folio-results > span { color: var(--muted-foreground); }
+@media(max-width: 900px) {
+  .folio-spread { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .folio-intro h1 { font-size: clamp(3.25rem, 7vw, 4.5rem); }
+  .folio-caption { flex-wrap: wrap; }
+  .release-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width: 680px) {
+  .folio-intro, .folio-latest { width: calc(100% - 2.5rem); }
+  .folio-intro { padding-top: 5.3rem; }
+  .folio-spread { grid-template-columns: minmax(0,1fr); padding-bottom: 1.2rem; gap: 1.4rem; }
+  .folio-intro h1 { font-size: clamp(3.5rem, 12.5vw, 5.15rem); margin-block: 1.1rem; }
+  .folio-actions { margin-top: 1.3rem; }
+  .folio-cover { height: auto; aspect-ratio: 1.55; }
+  .folio-caption { gap: .7rem; }
+  .folio-index { flex-wrap: wrap; justify-content: flex-start; column-gap: 1.3rem; row-gap: 0; padding-block: .55rem; }
+  .folio-index a { padding-block: .3rem; font-size: .8rem; }
+  .folio-index strong { font-size: 1.3rem; }
+  .folio-section-head { align-items: start; flex-direction: column; }
+  .release-grid { grid-template-columns: 1fr; }
+  .folio-filter { margin-block: 1.2rem; }
+  .folio-wordmark { font-size: .86rem; }
+}

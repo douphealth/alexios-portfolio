@@ -2,6 +2,18 @@
 export type Repo={name:string;url:string;owner:string};
 export type PagesProject={name:string;url:string};
 export const repos:Repo[]=[
+  {"name": "Signalroom", "url": "https://github.com/douphealth/signal-room", "owner": "douphealth"},
+  {"name": "Stain Solver", "url": "https://github.com/douphealth/stain-solver", "owner": "douphealth"},
+  {"name": "TenderAtlas", "url": "https://github.com/douphealth/tender-atlas", "owner": "douphealth"},
+  {"name": "SolarPayback", "url": "https://github.com/douphealth/solar-payback", "owner": "douphealth"},
+  {"name": "Check The Tag", "url": "https://github.com/douphealth/check-the-tag", "owner": "douphealth"},
+  {"name": "STOP THAT!", "url": "https://github.com/douphealth/stop-that", "owner": "douphealth"},
+  {"name": "CabinVolt", "url": "https://github.com/douphealth/cabin-volt", "owner": "douphealth"},
+  {"name": "BuyOnce", "url": "https://github.com/douphealth/buy-once", "owner": "douphealth"},
+  {"name": "Fix or Refund?", "url": "https://github.com/douphealth/fix-or-refund", "owner": "douphealth"},
+  {"name": "BorderCover Atlas", "url": "https://github.com/douphealth/border-cover", "owner": "douphealth"},
+  {"name": "Offramp", "url": "https://github.com/douphealth/offramp", "owner": "douphealth"},
+  {"name": "Archontiko Tsikari", "url": "https://github.com/papalexios01/tsikari", "owner": "papalexios01"},
 {
 "name": "Amzwp 001",
 "url": "https://github.com/douphealth/AmzWP-001",

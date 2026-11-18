@@ -3,7 +3,7 @@ export const GITHUB_URL = "https://github.com/douphealth";
 export const mailto = (subject: string, body = "") =>
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`;
 
-export type Category = "Search & publishing" | "AI products" | "Operations";
+export type Category = "Search & publishing" | "AI products" | "Operations" | "Decision tools" | "Web design";
 
 export type Project = {
   name: string;
@@ -13,9 +13,27 @@ export type Project = {
   blurb: string;
   caseStudy?: string;
   flagship?: boolean;
+  discipline?: string;
+  cover?: { src: string; alt: string };
 };
 
+export const recentProjects: Project[] = [
+  {"name": "Signalroom", "url": "https://signalroom.store/", "repo": "https://github.com/douphealth/signal-room", "category": "Operations", "discipline": "Status monitoring", "blurb": "See which AI and developer services are reporting incidents, then open the provider’s own status report."},
+  {"name": "Stain Solver", "url": "https://stainsolver.shop/", "repo": "https://github.com/douphealth/stain-solver", "category": "Decision tools", "discipline": "Textile care", "blurb": "Choose the spill and fabric to find the first step to take before you wash."},
+  {"name": "TenderAtlas", "url": "https://tenderatlas.shop/", "repo": "https://github.com/douphealth/tender-atlas", "category": "Decision tools", "discipline": "Procurement", "blurb": "Find public procurement notices across official sources and follow each opportunity back to its publisher."},
+  {"name": "SolarPayback", "url": "https://solarpayback.shop/", "repo": "https://github.com/douphealth/solar-payback", "category": "Decision tools", "discipline": "Energy modelling", "blurb": "Compare the payback period of a rooftop solar quote using local production estimates and your electricity costs.", "cover": {"src": "/work/solarpayback.webp", "alt": "Solar panels on a roof at sunset"}},
+  {"name": "Check The Tag", "url": "https://checkthetag.shop/", "repo": "https://github.com/douphealth/check-the-tag", "category": "Decision tools", "discipline": "Laundry care", "blurb": "Match the symbols on a garment label to plain-language washing and drying instructions."},
+  {"name": "STOP THAT!", "url": "https://stopthat.shop/", "repo": "https://github.com/douphealth/stop-that", "category": "Decision tools", "discipline": "Digital privacy", "blurb": "Look up the setting that controls an unwanted notification, pop-up or autoplay feature."},
+  {"name": "CabinVolt", "url": "https://cabinvolt.shop/", "repo": "https://github.com/douphealth/cabin-volt", "category": "Decision tools", "discipline": "Air travel", "blurb": "Check a power bank against published airline policies and model-specific recall records before packing."},
+  {"name": "BuyOnce", "url": "https://buyonce.site/", "repo": "https://github.com/douphealth/buy-once", "category": "Decision tools", "discipline": "Consumer technology", "blurb": "See which smart-device features keep working when you cancel the subscription.", "cover": {"src": "/work/buyonce.webp", "alt": "A video doorbell, security camera and smart ring"}},
+  {"name": "Fix or Refund?", "url": "https://fixorrefund.shop/", "repo": "https://github.com/douphealth/fix-or-refund", "category": "Decision tools", "discipline": "Consumer rights", "blurb": "Explore repair and seller-remedy options for a faulty purchase using EU consumer guidance."},
+  {"name": "BorderCover Atlas", "url": "https://bordercover.shop/", "repo": "https://github.com/douphealth/border-cover", "category": "Decision tools", "discipline": "Insurance research", "blurb": "Research whether a motor policy covers a cross-border trip and trace each condition to its source.", "cover": {"src": "/work/bordercover.webp", "alt": "A car following a winding Mediterranean coast road"}},
+  {"name": "Offramp", "url": "https://offramp-xkm.pages.dev/", "repo": "https://github.com/douphealth/offramp", "category": "Decision tools", "discipline": "Subscription management", "blurb": "Find the cancellation steps for a subscription based on where you signed up and who bills you."},
+  {"name": "Archontiko Tsikari", "url": "https://tsikari.pages.dev/", "repo": "https://github.com/papalexios01/tsikari", "category": "Web design", "discipline": "Hospitality design", "blurb": "Explore five studios inside a restored 1901 mansion in Varos, Lemnos, through a bilingual hospitality website.", "cover": {"src": "/work/tsikari.webp", "alt": "The mansion facade on the village square in Varos"}},
+];
+
 export const projects: Project[] = [
+  ...recentProjects,
   { name: "Index Engine", flagship: true, repo: "https://github.com/douphealth/index-engine", category: "Search & publishing", blurb: "Discovers, diagnoses and prioritizes URL indexation problems.", caseStudy: "index-engine" },
   { name: "Open FoodScan", flagship: true, url: "https://food-scan.gearuptofit.com/", repo: "https://github.com/douphealth/foodscan", category: "AI products", blurb: "Barcode intelligence with nutrition, allergens and honest price sources.", caseStudy: "foodscan" },
   { name: "Mission Control", flagship: true, url: "https://mission-control-21072026.pages.dev/", repo: "https://github.com/douphealth/mission-control-21072026", category: "Operations", blurb: "One timeline for websites, builds, tasks and infrastructure.", caseStudy: "mission-control" },
@@ -39,7 +57,7 @@ export const projects: Project[] = [
   { name: "Watch Match", url: "https://gearuptofit.com/watch-match", category: "AI products", blurb: "Find the right fitness watch." },
   { name: "Supplement Match", url: "https://gearuptofit.com/supplement-match", category: "AI products", blurb: "Supplement recommendations with context." },
   { name: "GearUpToFit Fitness Plan", url: "https://gearuptofit.com/fitness-plan", category: "AI products", blurb: "On-site fitness planning tool." },
-  { name: "Backlink Command Center", category: "Operations", blurb: "Backlink tracking and outreach operations." },
+  { name: "Backlink Command Center", repo: "https://github.com/douphealth/backlink-command-center", category: "Operations", blurb: "Backlink tracking and outreach operations." },
 ];
 
 export type CaseStudy = {

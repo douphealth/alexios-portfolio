@@ -1,25 +1,29 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Check, X, ArrowDown } from "lucide-react";
+import { ArrowUpRight, Check, X } from "lucide-react";
 import portrait from "@/assets/alexios-portrait.webp";
 import { caseStudies, method, projects, mailto, GITHUB_URL } from "@/data/portfolio";
 import { repos, pagesProjects } from "@/data/inventory";
-import { SystemGraphic, CaseArt } from "@/components/site/Illustrations";
+import { CaseArt } from "@/components/site/Illustrations";
+import { PortfolioIntro, LatestWork } from "@/components/site/PortfolioShowcase";
 import { Reveal } from "@/components/site/Reveal";
 import { preflight, type Check as PCheck } from "@/lib/preflight";
 import { cn } from "@/lib/utils";
-import { Tilt, Magnetic, Spotlight, RotatingWord, Counter, SplitWords } from "@/components/site/Motion";
+import { Tilt } from "@/components/site/Motion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Alexios Papaioannou — Technical SEO & AI Growth Systems" },
-      { name: "description", content: "I fix what holds websites back and build what moves them forward: technical SEO, indexation and AI product engineering with source-backed work." },
+      { name: "description", content: "Explore Alexios Papaioannou’s independent websites, decision tools and technical SEO work, from rooftop solar estimates to public procurement search." },
       { property: "og:title", content: "Alexios Papaioannou — Technical SEO & AI Growth Systems" },
-      { property: "og:description", content: "Fix what holds sites back. Build what moves them forward. Source-backed case studies, no invented metrics." },
+      { property: "og:description", content: "Explore my latest websites, decision tools and technical SEO case studies." },
+      { property: "og:image", content: "https://alexios-portfolio.pages.dev/work/solarpayback.webp" },
+      { property: "og:url", content: "https://alexios-portfolio.pages.dev/" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://alexios-portfolio.pages.dev/" }],
     scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: "Alexios Papaioannou", jobTitle: "Technical SEO & AI Product Engineer", email: "mailto:papalexios@gmail.com", sameAs: ["https://github.com/douphealth"], knowsAbout: ["Technical SEO", "Indexation", "AI product engineering", "Cloudflare"] }) }],
   }),
   component: Home,
@@ -28,8 +32,8 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      <Hero />
-      <Marquee />
+      <PortfolioIntro />
+      <LatestWork />
       <Work />
       <Paths />
       <Method />
@@ -38,79 +42,6 @@ function Home() {
       <About />
       <Contact />
     </>
-  );
-}
-
-function Hero() {
-  const [tab, setTab] = useState(0);
-  const c = caseStudies[tab]!;
-  return (
-    <section className="relative overflow-hidden pt-28 md:pt-36">
-      <div className="grain pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-      <div className="aurora pointer-events-none absolute -right-40 -top-40 size-[38rem] rounded-full bg-accent/25 blur-3xl" aria-hidden />
-      <div className="aurora pointer-events-none absolute -left-40 top-1/2 size-[30rem] rounded-full bg-sun/30 blur-3xl [animation-delay:-6s]" aria-hidden />
-      <div className="dot-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden />
-      <Spotlight />
-      <div className="relative mx-auto grid max-w-7xl gap-14 px-5 pb-20 md:px-8 lg:grid-cols-[1.25fr_1fr]">
-        <div>
-          <div className="flex animate-rise items-center gap-4">
-            <img src={portrait} alt="Portrait of Alexios Papaioannou" width={56} height={56} className="size-14 rounded-full border-2 border-background object-cover shadow-card" />
-            <div>
-              <p className="text-sm font-medium">Hello, I'm Alexios Papaioannou.</p>
-                            <p className="eyebrow mt-1 inline-flex items-center gap-2 text-primary"><span className="relative flex size-2"><span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75" /><span className="relative inline-flex size-2 rounded-full bg-accent" /></span>Taking on new projects</p>
-            </div>
-          </div>
-          <h1 className="mt-10 text-[clamp(3rem,8vw,7rem)] font-light leading-[0.92]">
-            <SplitWords text="Fix what holds sites" delay={100} /> <em className="text-gradient word-rise inline-block" style={{ animationDelay: "420ms" }}>back.</em>
-            <span className="mt-2 block text-muted-foreground"><SplitWords text="Build what moves them" delay={550} /> <em className="word-rise inline-block text-primary" style={{ animationDelay: "900ms" }}>forward.</em></span>
-          </h1>
-          <p className="mt-8 max-w-xl animate-rise text-lg leading-relaxed text-muted-foreground" style={{ animationDelay: "240ms" }}>
-            I combine technical SEO and AI product engineering to fix <RotatingWord className="font-medium text-foreground" words={["indexation gaps", "slow publishing", "messy operations", "invisible content"]} /> — solving real website problems — then connect the code, content and infrastructure into systems that keep improving.
-          </p>
-          <div className="mt-10 flex animate-rise flex-wrap items-center gap-3" style={{ animationDelay: "360ms" }}>
-            <Magnetic className="glow-border rounded-full"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-ink-foreground transition hover:bg-accent">Work with me <ArrowUpRight className="size-4" /></a></Magnetic>
-            <Magnetic><a href="#work" className="inline-flex items-center gap-2 rounded-full border border-foreground px-6 py-3 transition hover:bg-foreground hover:text-background">Explore the evidence <ArrowDown className="size-4 animate-bounce" /></a></Magnetic>
-          </div>
-                  </div>
-
-        <Tilt className="animate-rise self-start" max={7}><div className="float-y relative border border-foreground bg-card shadow-card">
-          <div className="eyebrow flex justify-between border-b border-foreground px-4 py-2"><span>AP / The system</span><span className="text-accent">Fig. 001</span></div>
-          <div className="aspect-square p-4"><SystemGraphic /></div>
-          <div className="border-t border-foreground">
-            <div className="grid grid-cols-3" role="tablist" aria-label="Operating model">
-              {["Search", "Products", "Systems"].map((l, i) => (
-                <button key={l} role="tab" aria-selected={tab === i} onClick={() => setTab(i)} className={cn("eyebrow border-r border-foreground py-3 transition last:border-r-0", tab === i ? "bg-ink text-ink-foreground" : "hover:bg-secondary")}>
-                  0{i + 1} / {l}
-                </button>
-              ))}
-            </div>
-            <Link to="/work/$slug" params={{ slug: c.slug }} className="group flex items-center justify-between gap-4 p-5" role="tabpanel">
-              <div><p className="font-display text-2xl">{c.name}</p><p className="text-sm text-muted-foreground">{c.tagline}</p></div>
-              <ArrowUpRight className="size-6 shrink-0 transition group-hover:rotate-45 group-hover:text-accent" />
-            </Link>
-          </div>
-        </div></Tilt>
-      </div>
-      <div className="relative mx-auto grid max-w-7xl grid-cols-3 border-t border-foreground px-5 md:px-8">
-        {[[caseStudies.length, "In-depth case studies"], [projects.length, "Curated builds"], [repos.length, "Public repositories"]].map(([n, l]) => (
-          <div key={l as string} className="border-r border-foreground py-6 pr-4 last:border-r-0 [&:not(:first-child)]:pl-4 md:py-8">
-            <p className="font-display text-4xl font-light md:text-6xl"><Counter to={n as number} /></p>
-            <p className="eyebrow mt-2 text-muted-foreground">{l}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Marquee() {
-  const words = ["Technical SEO", "Indexation", "AI products", "WordPress publishing", "Automation", "Cloudflare", "Source-backed", "Measure & improve"];
-  return (
-    <div className="overflow-hidden border-y border-foreground bg-ink py-4 text-ink-foreground" aria-hidden>
-      <div className="flex w-max animate-marquee gap-10 whitespace-nowrap font-display text-2xl italic">
-        {[...words, ...words].map((w, i) => <span key={i} className="flex items-center gap-10">{w}<span className="text-accent">✳</span></span>)}
-      </div>
-    </div>
   );
 }
 
@@ -130,7 +61,7 @@ function Work() {
   return (
     <section id="work" className="scroll-mt-16 py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <SectionHead k="01 / Selected case studies" title={<>Proof in the <em>things I build.</em></>} sub="Different problems. One discipline: understand what matters, engineer a useful response, and keep the implementation traceable." />
+        <SectionHead k="01 / Selected case studies" title={<>Inside the <em>build.</em></>} sub="How I built a search diagnostics system, a food-label scanner and a dashboard for running a portfolio." />
         <div className="space-y-8">
           {caseStudies.map((c, i) => (
             <Reveal key={c.slug}>
@@ -302,7 +233,7 @@ function Preflight() {
                   </li>
                 ))}
               </ul>
-              <a href="#contact" onClick={() => window.dispatchEvent(new CustomEvent("intake:url", { detail: { url: res.href, checklist: res.checks.map((c) => `${c.ok ? "✓" : "✗"} ${c.label}`).join("\n") } }))} className="mt-6 inline-flex items-center gap-2 font-medium text-sun link-underline">Send this URL + checklist to Alexios <ArrowUpRight className="size-4" /></a>
+              <a href="#contact" onClick={() => window.dispatchEvent(new CustomEvent("intake:url", { detail: { url: res.href, checklist: res.checks.map((c) => `${c.ok ? "✓" : "✗"} ${c.label}`).join("\n") } }))} className="mt-6 inline-flex items-center gap-2 font-medium text-sun link-underline">Add this URL and checklist to my enquiry <ArrowUpRight className="size-4" /></a>
             </div>
           )}
         </div>
@@ -351,9 +282,9 @@ function Contact() {
   return (
     <section id="contact" className="border-t border-foreground bg-secondary py-28">
       <Reveal className="mx-auto max-w-5xl px-5 text-center md:px-8">
-        <p className="eyebrow text-accent">Ready to fix what matters?</p>
-        <h2 className="mt-6 text-5xl font-light leading-[0.95] md:text-8xl">Make your site easier to find. <em className="text-accent">And worth finding.</em></h2>
-        <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground">For site owners who need an indexation diagnosis, an AI-powered utility, or a practical WordPress growth system. Share the URL and the problem; the first step is defining what can actually be measured.</p>
+        <p className="eyebrow text-accent">Work with me</p>
+        <h2 className="mt-6 text-5xl font-light leading-[0.95] md:text-8xl">What would you like <em className="text-primary">to build?</em></h2>
+        <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground">Tell me about the site, tool or search problem you have in mind. This form prepares an email to me with your project details.</p>
         <Intake />
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-foreground px-7 py-3.5 transition hover:bg-foreground hover:text-background">See public code <ArrowUpRight className="size-4" /></a>
@@ -386,12 +317,12 @@ function Intake() {
   return (
     <form onSubmit={submit} className="mx-auto mt-12 grid max-w-2xl gap-3 text-left">
       <div className="grid gap-3 sm:grid-cols-2">
-        <label><span className="eyebrow mb-1.5 block text-muted-foreground">Your website</span><input required value={url} onChange={(e) => setUrl(e.target.value)} placeholder="example.com" inputMode="url" className={field} /></label>
+        <label><span className="eyebrow mb-1.5 block text-muted-foreground">Your website (optional)</span><input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="example.com" inputMode="url" className={field} /></label>
         <label><span className="eyebrow mb-1.5 block text-muted-foreground">Your email</span><input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" className={field} /></label>
       </div>
-      <label><span className="eyebrow mb-1.5 block text-muted-foreground">What's holding it back?</span><textarea required rows={3} value={problem} onChange={(e) => setProblem(e.target.value)} placeholder="Pages not indexed, traffic dropped, need an AI tool…" className={field} /></label>
+      <label><span className="eyebrow mb-1.5 block text-muted-foreground">What do you want to achieve?</span><textarea required rows={3} value={problem} onChange={(e) => setProblem(e.target.value)} placeholder="Pages not indexed, traffic dropped, need an AI tool…" className={field} /></label>
       {checklist && <p className="eyebrow text-accent">✓ Preflight checklist attached</p>}
-      <button className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-ink-foreground transition hover:bg-accent">Send enquiry <ArrowUpRight className="size-4" /></button>
+      <button className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-ink-foreground transition hover:bg-accent">Open email draft <ArrowUpRight className="size-4" /></button>
     </form>
   );
 }

@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Project Atlas — Every Public Record | Alexios Papaioannou" },
+      { title: "Project Atlas — Websites, Apps & Source Code | Alexios Papaioannou" },
       { name: "description", content: "Searchable index of curated websites and apps, public GitHub repositories and Cloudflare Pages projects by Alexios Papaioannou." },
       { property: "og:title", content: "Project Atlas | Alexios Papaioannou" },
-      { property: "og:description", content: "Everything built. Nothing buried. Search every public project, repository and deployment." },
+      { property: "og:description", content: "Explore websites, decision tools, source code and deployment records." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/projects")({
 
 type Row = { name: string; url: string; kind: "Selected" | "GitHub" | "Pages"; meta: string };
 const rows: Row[] = [
-  ...projects.filter((p) => p.url || p.repo).map((p) => ({ name: p.name, url: (p.url ?? p.repo)!, kind: "Selected" as const, meta: p.category })),
+  ...projects.filter((p) => p.url || p.repo).map((p) => ({ name: p.name, url: (p.url ?? p.repo)!, kind: "Selected" as const, meta: [p.category, p.discipline, p.blurb].filter(Boolean).join(" · ") })),
   ...repos.map((r) => ({ name: r.name, url: r.url, kind: "GitHub" as const, meta: r.owner })),
   ...pagesProjects.map((p) => ({ name: p.name, url: p.url, kind: "Pages" as const, meta: new URL(p.url).host })),
 ];
@@ -43,11 +43,11 @@ function Atlas() {
   return (
     <section className="pb-28 pt-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <p className="eyebrow text-accent">04 / The complete index</p>
-        <h1 className="mt-4 text-6xl font-light leading-[0.92] md:text-8xl">Everything built. <em className="text-muted-foreground">Nothing buried.</em></h1>
-        <p className="mt-8 max-w-2xl text-lg text-muted-foreground">Selected websites and apps, every accessible public GitHub repository, and the Pages inventory from the connected Cloudflare account. Snapshot: 3 November 2026.</p>
+        <p className="eyebrow text-accent">Portfolio directory</p>
+        <h1 className="mt-4 text-6xl font-light leading-[0.92] md:text-8xl">The project <em className="text-muted-foreground">atlas.</em></h1>
+        <p className="mt-8 max-w-2xl text-lg text-muted-foreground">Explore websites and apps by purpose, or switch to source repositories and deployment records. Selected projects updated 18 November 2026. The historical Pages inventory is dated 3 November 2026.</p>
 
-        <div className="sticky top-16 z-10 mt-12 flex flex-col gap-3 border-y border-foreground bg-background/95 py-4 backdrop-blur md:flex-row md:items-center">
+        <div className="md:sticky md:top-16 z-10 mt-12 flex flex-col gap-3 border-y border-foreground bg-background/95 py-4 backdrop-blur md:flex-row md:items-center">
           <label className="relative flex-1">
             <span className="sr-only">Search records</span>
             <Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -86,7 +86,7 @@ function Atlas() {
         {shown < list.length && (
           <div className="mt-10 text-center"><button onClick={() => setShown((s) => s + PAGE)} className="rounded-full border border-foreground px-6 py-3 transition hover:bg-foreground hover:text-background">Load more · {list.length - shown} remaining</button></div>
         )}
-        <p className="eyebrow mt-12 max-w-3xl text-muted-foreground">Private repositories are intentionally omitted. The second Cloudflare account is not connected, so Workers and Pages coverage is incomplete. Deployment records are historical, not an availability guarantee.</p>
+        <p className="eyebrow mt-12 max-w-3xl text-muted-foreground">The Pages archive lists historical deployments. Use the Selected filter for the curated portfolio.</p>
       </div>
     </section>
   );

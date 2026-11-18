@@ -28,12 +28,12 @@ export function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (o: 
         <CommandGroup heading="Pages & actions">
           <CommandItem onSelect={() => go(() => navigate({ to: "/projects" }))}>Project atlas — every public record</CommandItem>
           <CommandItem onSelect={() => go(() => navigate({ to: "/", hash: "preflight" }))}>Run a URL preflight checklist</CommandItem>
-          <CommandItem onSelect={() => go(() => window.open(GITHUB_URL, "_blank"))}>Open GitHub</CommandItem>
+          <CommandItem onSelect={() => go(() => window.open(GITHUB_URL, "_blank", "noopener,noreferrer"))}>Open GitHub</CommandItem>
           <CommandItem onSelect={() => go(() => (window.location.href = mailto("Website Growth Inquiry")))}>Email Alexios</CommandItem>
         </CommandGroup>
-        <CommandGroup heading="Live projects">
+        <CommandGroup heading="Websites & apps">
           {projects.filter((p) => p.url).map((p) => (
-            <CommandItem key={p.name} value={`project ${p.name}`} onSelect={() => go(() => window.open(p.url, "_blank"))}>
+            <CommandItem key={p.name} value={`project ${p.name}`} onSelect={() => go(() => window.open(p.url, "_blank", "noopener,noreferrer"))}>
               {p.name} <span className="ml-auto text-xs text-muted-foreground">{p.category}</span>
             </CommandItem>
           ))}
