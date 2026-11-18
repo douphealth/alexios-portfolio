@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { caseStudies, projects, mailto, GITHUB_URL } from "@/data/portfolio";
 
 export function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (o: boolean) => void }) {
   const navigate = useNavigate();
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setOpen(!open); }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, setOpen]);
   const go = (fn: () => void) => { setOpen(false); fn(); };
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
@@ -26,6 +18,7 @@ export function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (o: 
           ))}
         </CommandGroup>
         <CommandGroup heading="Pages & actions">
+          <CommandItem onSelect={() => go(() => navigate({ to: "/", hash: "websites" }))}>Explore the main website collection</CommandItem>
           <CommandItem onSelect={() => go(() => navigate({ to: "/projects" }))}>Project atlas — every public record</CommandItem>
           <CommandItem onSelect={() => go(() => navigate({ to: "/", hash: "preflight" }))}>Run a URL preflight checklist</CommandItem>
           <CommandItem onSelect={() => go(() => window.open(GITHUB_URL, "_blank", "noopener,noreferrer"))}>Open GitHub</CommandItem>
@@ -33,7 +26,7 @@ export function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (o: 
         </CommandGroup>
         <CommandGroup heading="Websites & apps">
           {projects.filter((p) => p.url).map((p) => (
-            <CommandItem key={p.name} value={`project ${p.name}`} onSelect={() => go(() => window.open(p.url, "_blank", "noopener,noreferrer"))}>
+            <CommandItem key={p.name} value={`project ${p.name} ${p.url} ${p.discipline ?? ""} ${p.blurb}`} onSelect={() => go(() => window.open(p.url, "_blank", "noopener,noreferrer"))}>
               {p.name} <span className="ml-auto text-xs text-muted-foreground">{p.category}</span>
             </CommandItem>
           ))}

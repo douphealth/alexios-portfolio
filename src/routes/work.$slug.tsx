@@ -14,7 +14,7 @@ export const Route = createFileRoute("/work/$slug")({
     const s = loaderData?.study;
     const title = s ? `${s.title} | Alexios Papaioannou` : "Case study | Alexios Papaioannou";
     const desc = s?.tagline ?? "Source-backed case study.";
-    return { meta: [{ title }, { name: "description", content: desc }, { property: "og:title", content: title }, { property: "og:description", content: desc }, { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" }] };
+    return { links: s ? [{ rel: "canonical", href: `https://alexios-portfolio.pages.dev/work/${s.slug}` }] : [], meta: [{ title }, { name: "description", content: desc }, { property: "og:title", content: title }, { property: "og:description", content: desc }, { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" }] };
   },
   component: CaseStudyPage,
 });

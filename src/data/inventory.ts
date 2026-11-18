@@ -13,7 +13,6 @@ export const repos:Repo[]=[
   {"name": "Fix or Refund?", "url": "https://github.com/douphealth/fix-or-refund", "owner": "douphealth"},
   {"name": "BorderCover Atlas", "url": "https://github.com/douphealth/border-cover", "owner": "douphealth"},
   {"name": "Offramp", "url": "https://github.com/douphealth/offramp", "owner": "douphealth"},
-  {"name": "Archontiko Tsikari", "url": "https://github.com/papalexios01/tsikari", "owner": "papalexios01"},
 {
 "name": "Amzwp 001",
 "url": "https://github.com/douphealth/AmzWP-001",

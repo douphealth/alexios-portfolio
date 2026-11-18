@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://alexios-portfolio.pages.dev/projects" }],
     meta: [
       { title: "Project Atlas — Websites, Apps & Source Code | Alexios Papaioannou" },
       { name: "description", content: "Searchable index of curated websites and apps, public GitHub repositories and Cloudflare Pages projects by Alexios Papaioannou." },

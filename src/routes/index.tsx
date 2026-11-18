@@ -2,8 +2,8 @@ import { useEffect, useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Check, X } from "lucide-react";
 import portrait from "@/assets/alexios-portrait.webp";
-import { caseStudies, method, projects, mailto, GITHUB_URL } from "@/data/portfolio";
-import { repos, pagesProjects } from "@/data/inventory";
+import { caseStudies, method, mainSites, cloudflarePicks, mailto, GITHUB_URL } from "@/data/portfolio";
+import { WebsiteCollection } from "@/components/site/WebsiteCollection";
 import { CaseArt } from "@/components/site/Illustrations";
 import { PortfolioIntro, LatestWork } from "@/components/site/PortfolioShowcase";
 import { Reveal } from "@/components/site/Reveal";
@@ -14,17 +14,22 @@ import { Tilt } from "@/components/site/Motion";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alexios Papaioannou — Technical SEO & AI Growth Systems" },
+      { title: "Alexios Papaioannou — Independent Websites, Tools & Technical SEO" },
       { name: "description", content: "Explore Alexios Papaioannou’s independent websites, decision tools and technical SEO work, from rooftop solar estimates to public procurement search." },
-      { property: "og:title", content: "Alexios Papaioannou — Technical SEO & AI Growth Systems" },
-      { property: "og:description", content: "Explore my latest websites, decision tools and technical SEO case studies." },
-      { property: "og:image", content: "https://alexios-portfolio.pages.dev/work/solarpayback.webp" },
+      { property: "og:title", content: "Alexios Papaioannou — Independent Websites, Tools & Technical SEO" },
+      { property: "og:description", content: "Discover ten independent websites, the tools behind them and selected Cloudflare builds." },
+      { property: "og:image", content: "https://alexios-portfolio.pages.dev/network/gearuptofit-cover.webp" },
       { property: "og:url", content: "https://alexios-portfolio.pages.dev/" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://alexios-portfolio.pages.dev/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: "Alexios Papaioannou", jobTitle: "Technical SEO & AI Product Engineer", email: "mailto:papalexios@gmail.com", sameAs: ["https://github.com/douphealth"], knowsAbout: ["Technical SEO", "Indexation", "AI product engineering", "Cloudflare"] }) }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({
+      "@context": "https://schema.org", "@graph": [
+        { "@type": "Person", "@id": "https://alexios-portfolio.pages.dev/#alexios", name: "Alexios Papaioannou", jobTitle: "Founder and independent publisher", url: "https://alexios-portfolio.pages.dev/", sameAs: [GITHUB_URL] },
+        { "@type": "CollectionPage", "@id": "https://alexios-portfolio.pages.dev/", name: "Alexios Papaioannou’s portfolio", author: { "@id": "https://alexios-portfolio.pages.dev/#alexios" },
+          mainEntity: { "@type": "ItemList", numberOfItems: mainSites.length, itemListElement: mainSites.map((site,index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "WebSite", name: site.name, url: site.url } })) } }
+      ] }) }],
   }),
   component: Home,
 });
@@ -33,11 +38,12 @@ function Home() {
   return (
     <>
       <PortfolioIntro />
+      <WebsiteCollection />
       <LatestWork />
+      <Lab />
       <Work />
       <Paths />
       <Method />
-      <Lab />
       <Preflight />
       <About />
       <Contact />
@@ -150,12 +156,12 @@ function Method() {
 }
 
 function Lab() {
-  const list = projects.filter((p) => p.flagship);
+  const list = cloudflarePicks;
   return (
     <section id="lab" className="scroll-mt-16 py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <SectionHead k="03 / The product lab" title={<>Flagship <em>builds.</em></>} sub={`Six of the ${projects.length} products I run — the strongest AI and search systems. The rest live in the atlas.`} />
-        <ul className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHead k="Selected Cloudflare deployments" title={<>Tools you can <em>try.</em></>} sub="Explore a rental-car border policy, score a prompt, plan a day or turn an article into a quiz." />
+        <ul className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {list.map((p) => {
             const href = p.caseStudy ? `/work/${p.caseStudy}` : p.url ?? p.repo;
             const ext = !p.caseStudy;
@@ -179,11 +185,6 @@ function Lab() {
             );
           })}
         </ul>
-        <Reveal className="mt-16 grid gap-px border border-foreground bg-foreground sm:grid-cols-3">
-          {[[projects.length, "Curated websites & apps"], [repos.length, "Public GitHub repositories"], [pagesProjects.length, "Cloudflare Pages records"]].map(([n, l]) => (
-            <div key={l as string} className="bg-card p-8"><p className="font-display text-6xl font-light">{n}</p><p className="eyebrow mt-2 text-muted-foreground">{l}</p></div>
-          ))}
-        </Reveal>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
           <span />
           <Link to="/projects" className="inline-flex items-center gap-2 font-medium link-underline">Explore the complete atlas <ArrowUpRight className="size-4" /></Link>

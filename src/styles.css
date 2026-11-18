@@ -8,6 +8,11 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "./studio.css";
+
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/fraunces-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 100 900; font-display: swap; src: url("/fonts/fraunces-latin-wght-italic.woff2") format("woff2"); }
+@font-face { font-family: "Hanken Grotesk"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); }
 
 @custom-variant dark (&:is(.dark *));
 
@@ -67,7 +72,7 @@
   --color-sun: var(--sun);
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: ui-monospace, monospace;
   --shadow-card: var(--shadow-card);
   --animate-marquee: marquee 40s linear infinite;
   --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;

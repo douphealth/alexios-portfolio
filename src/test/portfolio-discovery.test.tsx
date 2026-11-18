@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { LatestWork, PortfolioIntro } from "@/components/site/PortfolioShowcase";
-import { projects, recentProjects } from "@/data/portfolio";
+import { projects, recentProjects, mainSites } from "@/data/portfolio";
 
 vi.mock("@tanstack/react-router", () => ({
   Link: ({ to, children }: { to: string; children: ReactNode }) => <a href={to}>{children}</a>,
@@ -13,7 +13,7 @@ afterEach(cleanup);
 describe("Portfolio discovery", () => {
   it("keeps each featured image, caption and destination together as visitors cycle in either direction", () => {
     render(<PortfolioIntro />);
-    const features = recentProjects.filter((p) => p.cover);
+    const features = [...mainSites, ...recentProjects].filter((p) => p.cover);
     const card = within(screen.getByRole("region", { name: "Featured projects" }));
     function expectFeature(index: number) {
       const p = features[index]!;
@@ -39,9 +39,9 @@ describe("Portfolio discovery", () => {
       expect(screen.getByRole("link", { name: `View ${p.name} source on GitHub` })).toHaveAttribute("href", p.repo);
       expect(projects).toContain(p);
     }
-    fireEvent.click(screen.getByRole("button", { name: "Web design" }));
+    fireEvent.click(screen.getByRole("button", { name: "Operations" }));
     expect(screen.getAllByRole("listitem")).toHaveLength(1);
-    expect(screen.getByRole("heading", { name: "Archontiko Tsikari" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Signalroom" })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "All" }));
     expect(screen.getAllByRole("listitem")).toHaveLength(6);
   });

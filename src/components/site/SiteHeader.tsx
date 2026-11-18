@@ -1,20 +1,32 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CommandPalette } from "./CommandPalette";
+const CommandPalette = lazy(() => import("./CommandPalette").then((module) => ({ default: module.CommandPalette })));
 
 
 const nav = [
+  { label: "Websites", hash: "websites" },
   { label: "Latest", hash: "latest" },
   { label: "Case studies", hash: "work" },
-  { label: "Method", hash: "method" },
+
   { label: "About", hash: "about" },
 ] as const;
 
 export function SiteHeader() {
+  const searchButton = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    function shortcut(event: KeyboardEvent) {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setOpen((previous) => !previous);
+      }
+    }
+    window.addEventListener("keydown", shortcut);
+    return () => window.removeEventListener("keydown", shortcut);
+  }, []);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 24);
     on();
@@ -31,14 +43,14 @@ export function SiteHeader() {
             <span className="folio-monogram" aria-hidden="true">ap<span>.</span></span>
             <span className="folio-wordmark">Alexios Papaioannou</span>
           </Link>
-          <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
             {nav.map((n) => (
               <Link key={n.hash} to="/" hash={n.hash} className="link-underline text-sm">{n.label}</Link>
             ))}
             <Link to="/projects" className="link-underline text-sm">Atlas</Link>
           </nav>
           <div className="flex items-center gap-2">
-            <button onClick={() => setOpen(true)} className="flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition hover:border-foreground hover:text-foreground" aria-label="Open command palette">
+            <button ref={searchButton} aria-haspopup="dialog" onClick={() => setOpen(true)} className="flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition hover:border-foreground hover:text-foreground" aria-label="Open command palette">
               <Search className="size-3.5" /> <span>Search</span>
             </button>
             <a href="/#contact" className="hidden items-center gap-1 rounded-full bg-ink px-4 py-1.5 text-sm text-ink-foreground transition hover:bg-accent sm:inline-flex">
@@ -47,7 +59,7 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
-      <CommandPalette open={open} setOpen={setOpen} />
+      {open && <Suspense fallback={<span role="status" className="sr-only">Opening search</span>}><CommandPalette open={open} setOpen={(value) => {setOpen(value); if (!value) searchButton.current?.focus();}} /></Suspense>}
     </>
   );
 }
